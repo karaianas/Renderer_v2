@@ -1,0 +1,25 @@
+attribute vec4 a_position;
+attribute vec3 a_normal;
+
+uniform mat4 u_MVP;
+uniform mat4 u_MV;
+
+
+varying vec3 v_normal;
+varying vec3 v_position;
+
+void main()
+{
+    v_position = vec3(u_MV * a_position);
+    v_normal = vec3(u_MV * vec4(a_normal, 0.0));
+
+    gl_Position = u_MVP * a_position;
+}
+
+/*
+     float len = length(a_normal);
+     float x = (a_normal.x / len + 1.0) / 2.0;
+     float y = (a_normal.y / len + 1.0) / 2.0;
+     float z = (a_normal.z / len + 1.0) / 2.0;
+     vec3 n_normal = vec3(x, y, z);
+*/
